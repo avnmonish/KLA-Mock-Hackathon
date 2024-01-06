@@ -66,7 +66,6 @@ def nearest_neighbor(current_node, unvisited_nodes) :
 path = []  # Stores the path
 unvisited = list(range(20))
 
-
 path += [r0.index(min(r0))]
 unvisited.remove(path[-1])
 pathCost = [min(r0)]
@@ -77,7 +76,7 @@ while unvisited :
     path += [closest]
     unvisited.remove(closest)
 
-'''
+
 print('\nNeighbour Distances : ')
 for i in range(len(dist)) :
     print('dis ', i, ' : ', dist[i])
@@ -88,10 +87,6 @@ print('r0 : ', r0)
 print()
 print('\nDesired path :')
 print(path)
-'''
-
-
-
 
 
 # cost of each traversal :

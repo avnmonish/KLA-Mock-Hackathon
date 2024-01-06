@@ -79,7 +79,7 @@ while unvisited :
     path += [closest]
     unvisited.remove(closest)
 
-
+'''
 # cost of each traversal :
 for i in range(19) :
     pathCost += [dist[path[i]][path[i + 1]]]
@@ -89,17 +89,15 @@ pathSum += r0[path[-1]]
 print('\nPath cost :')
 print(pathCost)
 print('\nPath sum : ', pathSum, '\n')
+'''
 
+print(*path)
 
 # Path with name :
 namepath = ['r0']
 for i in range(len(path)) :
     namepath += ['n' + str(path[i])]
 namepath += ['r0']
-
-# Final ans :
-ans = {'v0' : {'path' : namepath}}
-print(ans)
 
 # Capacity of scooter.
 cap = code['vehicles']['v0']['capacity']  #600
@@ -129,7 +127,7 @@ q17 = code['neighbourhoods']['n17']['order_quantity']
 q18 = code['neighbourhoods']['n18']['order_quantity']
 q19 = code['neighbourhoods']['n19']['order_quantity']
 
-
+print(type(q0))
 #print(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19)
 
 

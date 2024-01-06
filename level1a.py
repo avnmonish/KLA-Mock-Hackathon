@@ -25,7 +25,7 @@ Goal is reduce number trips and total distance traveled
 import json
 
 # Reading
-with open('level1a.json', 'r') as file :
+with open('level0.json', 'r') as file :
     code = json.load(file)  # Gives a dict.
 
 # Neighbourhood Distances :
@@ -61,9 +61,50 @@ dist = [n0, n1, n2, n3, n4,
         n10, n11, n12, n13, n14,
         n15, n16, n17, n18, n19]
 
-# Capacity of scooter.
-cap = code['vehicles']['v0']['capacity']
+# Function to find the nearest neighbor :
+def nearest_neighbor(current_node, unvisited_nodes) :
+    return min(unvisited_nodes, key = lambda x : dist[current_node][x])
 
+path = []  # Stores the path
+unvisited = list(range(20))
+
+
+path += [r0.index(min(r0))]
+unvisited.remove(path[-1])
+pathCost = [min(r0)]
+pathSum = pathCost[-1]
+
+while unvisited :
+    closest = nearest_neighbor(path[-1], unvisited)
+    path += [closest]
+    unvisited.remove(closest)
+
+
+# cost of each traversal :
+for i in range(19) :
+    pathCost += [dist[path[i]][path[i + 1]]]
+    pathSum += pathCost[-1]
+pathSum += r0[path[-1]]
+
+print('\nPath cost :')
+print(pathCost)
+print('\nPath sum : ', pathSum, '\n')
+
+
+# Path with name :
+namepath = ['r0']
+for i in range(len(path)) :
+    namepath += ['n' + str(path[i])]
+namepath += ['r0']
+
+# Final ans :
+ans = {'v0' : {'path' : namepath}}
+print(ans)
+
+# Capacity of scooter.
+cap = code['vehicles']['v0']['capacity']  #600
+
+# Order quantities :
 q0 = code['neighbourhoods']['n0']['order_quantity']
 q1 = code['neighbourhoods']['n1']['order_quantity']
 q2 = code['neighbourhoods']['n2']['order_quantity']
@@ -88,5 +129,56 @@ q17 = code['neighbourhoods']['n17']['order_quantity']
 q18 = code['neighbourhoods']['n18']['order_quantity']
 q19 = code['neighbourhoods']['n19']['order_quantity']
 
-print(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19)
 
+#print(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19)
+
+
+
+
+'''
+Q :
+70 70 90 50 70 90 110 70 110 70 70 110 110 90 50 90 110 90 70 110
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+Level 0 ans :
+
+Path cost :
+[510, 278, 1411, 252, 376, 492, 714, 322, 195, 298, 170, 91, 292, 722, 247, 127, 682, 854, 702, 1588]
+
+{'v0': {'path': ['r0', 'n13', 'n8', 'n3', 'n16', 'n1', 'n18', 'n9', 'n14', 'n17', 'n4', 'n15', 'n10', 'n12',
+'n6', 'n7', 'n19', 'n5', 'n0', 'n11', 'n2', 'r0']}}
+'''

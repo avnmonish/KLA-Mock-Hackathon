@@ -25,19 +25,13 @@ def tsp_dp(distance_matrix):
             if total_distance < min_distance:
                 min_distance = total_distance
                 min_path = [current] + path
+                #print('current', current, path )
 
         memo[(current, tuple(remaining))] = min_distance, min_path
         return min_distance, min_path
 
     distance, path = tsp_dp_helper(0, all_points_set - {0})
     return distance, path
-
-
-
-
-
-
-
 
 
 # Reading
@@ -77,10 +71,23 @@ distance_matrix = [r0, n0, n1, n2, n3, n4,
         n10, n11, n12, n13, n14,
         n15, n16, n17, n18, n19]
 
+print('\nDistance\n')
+print(distance_matrix)
+print()
+
+
 shortest_path_distance, shortest_path = tsp_dp(distance_matrix)
 print("Shortest path distance:", shortest_path_distance)
 print("Shortest path:", shortest_path)
 
+
+tmp = shortest_path[1 : -1]
+
+n = len(shortest_path) - 1
+print(tmp)
+print((n * (n + 1) // 2) - sum(tmp))
+
+'''
 namepath = []
 for path in shortest_path :
     if path == 0 :
@@ -94,3 +101,5 @@ print(ans)
 
 ['r0', 'n3', 'n16', 'n1', 'n18', 'n2', 'n14', 'n9', 'n12', 'n10', 'n15', 'n4', 'n17', 'n7',
  'n19', 'n6', 'n5', 'n0', 'n11', 'n8', "n13", 'r0']
+'''
+

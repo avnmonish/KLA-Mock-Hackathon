@@ -25,7 +25,7 @@ Goal is reduce number trips and total distance traveled
 import json
 
 # Reading
-with open('level1a.json', 'r') as file :
+with open('level1b.json', 'r') as file :
     code = json.load(file)  # Gives a dict.
 
 # Neighbourhood Distances :
@@ -66,7 +66,7 @@ def nearest_neighbor(current_node, unvisited_nodes) :
     return min(unvisited_nodes, key = lambda x : dist[current_node][x])
 
 path = []  # Stores the path
-unvisited = list(range(20))
+unvisited = list(range(50))
 
 
 path += [r0.index(min(r0))]
@@ -91,9 +91,10 @@ print()
 print('\nDesired path :')
 print(path)
 
+print('len', len(path))
 
 # cost of each traversal :
-for i in range(19) :
+for i in range(49) :
     pathCost += [dist[path[i]][path[i + 1]]]
     pathSum += pathCost[-1]
 pathSum += r0[path[-1]]
@@ -154,7 +155,7 @@ print('sum', sum(Q))
 path += [-1]
 disPath = []
 
-for i in range(21) :
+for i in range(51) :
     disPath += [[pathCost[i], path[i]]]
 
 disPath.sort()
@@ -248,20 +249,3 @@ Q :
 
 
 
-
-
-
-
-
-
-
-
-'''
-Level 0 ans :
-
-Path cost :
-[510, 278, 1411, 252, 376, 492, 714, 322, 195, 298, 170, 91, 292, 722, 247, 127, 682, 854, 702, 1588]
-
-{'v0': {'path': ['r0', 'n13', 'n8', 'n3', 'n16', 'n1', 'n18', 'n9', 'n14', 'n17', 'n4', 'n15', 'n10', 'n12',
-'n6', 'n7', 'n19', 'n5', 'n0', 'n11', 'n2', 'r0']}}
-'''

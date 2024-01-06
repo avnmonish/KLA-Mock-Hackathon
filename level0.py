@@ -109,6 +109,6 @@ namepath += ['r0']
 ans = {'v0' : {'path' : namepath}}
 print(ans)
 
-with open('level_0_output.json', 'w') as file :
+with open('level0_output.json', 'w') as file :
     json_str = json.dumps(ans)
     file.write(json_str)
